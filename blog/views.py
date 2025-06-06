@@ -1,14 +1,22 @@
+import os
+import smtplib
+
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.views.generic.edit import FormView
 from django.urls import reverse_lazy
 from django.contrib import messages
 from .forms import ContactForm
+from dotenv import load_dotenv
 # Create your views here.
-
 import requests
 
+load_dotenv()
 BLOG_POSTS = requests.get('https://api.npoint.io/ce3b8ba44b768e2a827e').json()
+EMAIL = os.environ["EMAIL"]
+PASSWORD = os.environ["PASSWORD"]
+
+
 class HomeView(TemplateView):
     template_name = "index.html"
 
@@ -28,6 +36,24 @@ class ContactView(FormView):
     success_url = reverse_lazy("contact")
 
     def form_valid(self, form):
+        name = form.cleaned_data["name"]
+        email = form.cleaned_data["email"]
+        phone = form.cleaned_data["phone"]
+        message = form.cleaned_data["message"]
+        with smtplib.SMTP("smtp.gmail.com", port=587) as connection:
+            connection.starttls()
+            connection.login(user=EMAIL, password=PASSWORD)
+
+            connection.sendmail(from_addr=email,
+                                to_addrs=EMAIL,
+                                msg = f"From: {name}"
+                                      f"\nTo: {EMAIL}"
+                                      f"\nSubject: Запитання про пінгвінів :)"
+                                      f"\n\nІм'я: {name}"
+                                      f"\nПошта: {email}"
+                                      f"\nТелефон: {phone}"
+                                      f"\nПитання: {message}".encode("UTF-8"))
+
         messages.success(self.request, "Повідомлення було успішно надіслано!")
         return super().form_valid(form)
 
