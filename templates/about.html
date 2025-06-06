@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<!-- Page Header-->
+<header class="masthead image-header" style="background-image: url('{% static "mysite/images/about-me-penguin.jpg" %}')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="page-heading">
+                    <h1>Про мене</h1>
+                    <span class="subheading">Автора цього блогу ;)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main Content-->
+<main class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <p>Цей блог було створено через попит на відповіді щодо важливих питань про пінгвінів. Багато людей над цим ніколи не задумувались!</p>
+                <p>Пінгвін — це нелітаючий морський птах, пристосований до життя у водному середовищі. Його тіло обтічної форми, щільне оперення та здатність зберігати тепло дозволяють виживати у надзвичайно суворих умовах, зокрема в Антарктиді. Незважаючи на те, що пінгвіни не вміють літати, у воді вони — вправні плавці, здатні долати великі відстані в пошуках їжі.</p>
+                <p>Цікаві факти:</p>
+                <li>У більшості пінгвінів є коліна — просто вони заховані під товстим шаром м'язів і пір’я.</li>
+                <li>Під час висиджування яйця самець імператорського пінгвіна може не їсти до 2 місяців.</li>
+                <li>Деякі види пінгвінів здатні пірнати на глибину понад 500 метрів.</li>
+                <p></p>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

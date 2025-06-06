@@ -12,3 +12,11 @@ class HomeView(generic.TemplateView):
         context = super().get_context_data(**kwargs)
         context["post_list"] = requests.get('https://api.npoint.io/ce3b8ba44b768e2a827e').json()
         return context
+
+
+class AboutView(generic.TemplateView):
+    template_name = "about.html"
+
+
+class ContactView(generic.TemplateView):
+    template_name = "contact.html"

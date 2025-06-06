@@ -33,7 +33,7 @@
                 </a>
                 <p class="post-meta">
                     Автор:
-                    <a href="#">Пінгвінний експерт</a>,
+                    <a href="{% url 'about' %}">Пінгвінний експерт</a>,
                     {{ post.created_at }}
                 </p>
             </div>
@@ -41,7 +41,7 @@
             <hr class="my-4" />
             {% endfor %}
             <!-- Pager-->
-            <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Попередні статті →</a></div>
+            <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#">Попередні статті →</a></div>
         </div>
     </div>
 </div>
