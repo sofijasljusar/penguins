@@ -25,23 +25,23 @@
                         <div class="form-floating">
                             <input class="form-control" id="name" type="text" placeholder="Введіть ваше ім'я..." data-sb-validations="required" />
                             <label for="name">Ім'я</label>
-                            <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                            <div class="invalid-feedback" data-sb-feedback="name:required">Ім'я обов'язкове.</div>
                         </div>
                         <div class="form-floating">
                             <input class="form-control" id="email" type="email" placeholder="Введіть електронну пошту..." data-sb-validations="required,email" />
                             <label for="email">Електронна пошта</label>
-                            <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
-                            <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
+                            <div class="invalid-feedback" data-sb-feedback="email:required">Електронна пошта обов'язкова</div>
+                            <div class="invalid-feedback" data-sb-feedback="email:email">Електронна пошта неправильна.</div>
                         </div>
                         <div class="form-floating">
                             <input class="form-control" id="phone" type="tel" placeholder="Введіть ваш номер телефону..." data-sb-validations="required" />
                             <label for="phone">Номер телефону</label>
-                            <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
+                            <div class="invalid-feedback" data-sb-feedback="phone:required">Номер телефону обов'язковий.</div>
                         </div>
                         <div class="form-floating">
                             <textarea class="form-control" id="message" placeholder="Введіть ваше питання тут..." style="height: 12rem" data-sb-validations="required"></textarea>
                             <label for="message">Питання</label>
-                            <div class="invalid-feedback" data-sb-feedback="message:required">Це поле обов'язкове.</div>
+                            <div class="invalid-feedback" data-sb-feedback="message:required">Питання обов'язкове.</div>
                         </div>
                         <br />
                         <!-- Submit success message-->
@@ -50,19 +50,16 @@
                         <!-- has successfully submitted-->
                         <div class="d-none" id="submitSuccessMessage">
                             <div class="text-center mb-3">
-                                <div class="fw-bolder">Form submission successful!</div>
-                                To activate this form, sign up at
-                                <br />
-                                <a href="https://startbootstrap.com/solution/contac t-forms">https://startbootstrap.com/solution/contact-forms</a>
+                                <div class="fw-bolder">Повідомлення успішно надіслано!</div>
                             </div>
                         </div>
                         <!-- Submit error message-->
                         <!---->
                         <!-- This is what your users will see when there is-->
                         <!-- an error submitting the form-->
-                        <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
+                        <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">При надсиланні повідомлення сталась помилка!</div></div>
                         <!-- Submit Button-->
-                        <button class="btn btn-primary text-uppercase disabled" id="submitButton" type="submit">Send</button>
+                        <button class="btn btn-primary text-uppercase disabled" id="submitButton" type="submit">Надіслати</button>
                     </form>
                 </div>
             </div>

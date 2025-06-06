@@ -6,7 +6,7 @@
 <header class="masthead video-header">
     <video autoplay muted loop id="bg-video">
         <source src="{% static 'penguins/videos/penguins-walking.mp4' %}" type="video/mp4">
-        Your browser does not support the video tag.
+        Ваш браузер не підтримує тег відео.
     </video>
     <div class="overlay"></div>
     <div class="container position-relative px-4 px-lg-5">
@@ -21,7 +21,7 @@
     </div>
 </header>
 <!-- Main Content-->
-<dx`iv class="container px-4 px-lg-5">
+<div class="container px-4 px-lg-5">
     <div class="row gx-4 gx-lg-5 justify-content-center">
         <div class="col-md-10 col-lg-8 col-xl-7">
             <!-- Post preview-->
@@ -40,9 +40,16 @@
             <!-- Divider-->
             <hr class="my-4" />
             {% endfor %}
+{#            {% if current_user.id == 1 %}#}
+            <div class="d-flex justify-content-end mb-4">
+            <a class="btn btn-primary text-uppercase" href="#"
+            >Створити новий пост</a
+            >
+            </div>
+{#            {% endif %}#}
             <!-- Pager-->
             <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#">Попередні статті →</a></div>
         </div>
     </div>
-</dxiv>
+</div>
 {% endblock %}
