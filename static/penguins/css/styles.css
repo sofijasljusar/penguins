@@ -389,3 +389,73 @@ a {
   --bs-btn-disabled-bg: #4789D4;
   --bs-btn-disabled-border-color: #4789D4;
 }
+
+/*VIDEO*/
+header.masthead {
+  position: relative;
+  margin-bottom: 3rem;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+header.video-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2; /* Place the video behind the text */
+}
+
+header.video-header .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.1); /* Dark overlay with 50% opacity */
+    z-index: -1; /* Place the overlay between the video and the content */
+}
+
+header.video-header:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #212529;
+  opacity: 0.5;
+  z-index: -1;
+}
+
+/*IMAGE*/
+header.image-header {
+  padding-top: calc(8rem + 57px);
+  padding-bottom: 8rem;
+  background: no-repeat center center;
+  background-color: #6c757d;
+  background-size: cover;
+  background-attachment: scroll;
+}
+
+header.image-header:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #212529;
+  opacity: 0.5;
+}
