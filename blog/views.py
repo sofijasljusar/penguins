@@ -1,11 +1,15 @@
 from django.shortcuts import render
-from django.views import generic
+from django.views.generic import TemplateView
+from django.views.generic.edit import FormView
+from django.urls import reverse_lazy
+from django.contrib import messages
+from .forms import ContactForm
 # Create your views here.
 
 import requests
 
 BLOG_POSTS = requests.get('https://api.npoint.io/ce3b8ba44b768e2a827e').json()
-class HomeView(generic.TemplateView):
+class HomeView(TemplateView):
     template_name = "index.html"
 
     def get_context_data(self, **kwargs):
@@ -14,15 +18,21 @@ class HomeView(generic.TemplateView):
         return context
 
 
-class AboutView(generic.TemplateView):
+class AboutView(TemplateView):
     template_name = "about.html"
 
 
-class ContactView(generic.TemplateView):
+class ContactView(FormView):
     template_name = "contact.html"
+    form_class = ContactForm
+    success_url = reverse_lazy("contact")
+
+    def form_valid(self, form):
+        messages.success(self.request, "Повідомлення було успішно надіслано!")
+        return super().form_valid(form)
 
 
-class PostDetail(generic.TemplateView):
+class PostDetail(TemplateView):
     template_name = "post_detail.html"
 
     def get_context_data(self, **kwargs):

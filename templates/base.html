@@ -36,7 +36,23 @@
                 </div>
             </div>
         </nav>
-
+        {% if messages %}
+          <div style="position: fixed; top: 1rem; left: 50%; transform: translateX(-50%); z-index: 1050; width: auto; max-width: 90%;">
+            {% for message in messages %}
+              <div class="alert alert-dismissible fade show shadow-sm" role="alert"
+                   style="
+                     background-color: #4789D4;
+                     color: white;
+                     font-size: 16px;
+                     padding: 0.5rem 1rem;
+                     border: none;
+                     text-align: center;
+                   ">
+                {{ message }}
+              </div>
+        {% endfor %}
+  </div>
+{% endif %}
         {%  block content %}
         <!-- Content goes here -->
         {%  endblock content %}
@@ -81,5 +97,14 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="{% static 'penguins/js/scripts.js' %}"></script>
+        <script>
+            setTimeout(() => {
+              const alert = document.querySelector('.alert');
+              if (alert) {
+                const bsAlert = bootstrap.Alert.getOrCreateInstance(alert);
+                bsAlert.close();
+              }
+            }, 3000);
+        </script>
     </body>
 </html>

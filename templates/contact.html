@@ -21,27 +21,38 @@
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <p>Маєте додаткові питання про пінгвінів? Заповніть форму нижче, щоб залишити повідомлення і я спробую знайти відповідь!</p>
                 <div class="my-5">
-                    <form id="contactForm" data-sb-form-api-token="API_TOKEN">
-                        <div class="form-floating">
-                            <input class="form-control" id="name" type="text" placeholder="Введіть ваше ім'я..." data-sb-validations="required" />
-                            <label for="name">Ім'я</label>
-                            <div class="invalid-feedback" data-sb-feedback="name:required">Ім'я обов'язкове.</div>
+                    <form id="contactForm" method="post" novalidate>
+                        {% csrf_token %}
+                        <div class="form-floating mb-3">
+                            {{ form.name }}
+                            <label for="{{ form.name.id_for_label }}">{{ form.name.label }}</label>
+                            {% for error in form.name.errors %}
+                                <div class="invalid-feedback d-block">{{ error }}</div>
+                            {% endfor %}
                         </div>
-                        <div class="form-floating">
-                            <input class="form-control" id="email" type="email" placeholder="Введіть електронну пошту..." data-sb-validations="required,email" />
-                            <label for="email">Електронна пошта</label>
-                            <div class="invalid-feedback" data-sb-feedback="email:required">Електронна пошта обов'язкова</div>
-                            <div class="invalid-feedback" data-sb-feedback="email:email">Електронна пошта неправильна.</div>
+                    
+                        <div class="form-floating mb-3">
+                            {{ form.email }}
+                            <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+                            {% for error in form.email.errors %}
+                                <div class="invalid-feedback d-block">{{ error }}</div>
+                            {% endfor %}
                         </div>
-                        <div class="form-floating">
-                            <input class="form-control" id="phone" type="tel" placeholder="Введіть ваш номер телефону..." data-sb-validations="required" />
-                            <label for="phone">Номер телефону</label>
-                            <div class="invalid-feedback" data-sb-feedback="phone:required">Номер телефону обов'язковий.</div>
+                    
+                        <div class="form-floating mb-3">
+                            {{ form.phone }}
+                            <label for="{{ form.phone.id_for_label }}">{{ form.phone.label }}</label>
+                            {% for error in form.phone.errors %}
+                                <div class="invalid-feedback d-block">{{ error }}</div>
+                            {% endfor %}
                         </div>
-                        <div class="form-floating">
-                            <textarea class="form-control" id="message" placeholder="Введіть ваше питання тут..." style="height: 12rem" data-sb-validations="required"></textarea>
-                            <label for="message">Питання</label>
-                            <div class="invalid-feedback" data-sb-feedback="message:required">Питання обов'язкове.</div>
+                    
+                        <div class="form-floating mb-3">
+                            {{ form.message }}
+                            <label for="{{ form.message.id_for_label }}">{{ form.message.label }}</label>
+                            {% for error in form.message.errors %}
+                                <div class="invalid-feedback d-block">{{ error }}</div>
+                            {% endfor %}
                         </div>
                         <br />
                         <!-- Submit success message-->
@@ -59,7 +70,7 @@
                         <!-- an error submitting the form-->
                         <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">При надсиланні повідомлення сталась помилка!</div></div>
                         <!-- Submit Button-->
-                        <button class="btn btn-primary text-uppercase disabled" id="submitButton" type="submit">Надіслати</button>
+                        <button class="btn btn-primary text-uppercase" id="submitButton" type="submit">Надіслати</button>
                     </form>
                 </div>
             </div>
