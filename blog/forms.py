@@ -19,11 +19,30 @@ class ContactForm(forms.Form):
 
 
 class RegisterForm(UserCreationForm):
-    email = forms.EmailField(required=True)
+    email = forms.EmailField(
+        label="Пошта",
+        widget=forms.TextInput(
+            attrs={"class": "form-control",
+                   "placeholder": "Введіть вашу пошту..."}))
 
     class Meta:
         model = User
         fields = ["username", "email", "password1", "password2"]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["username"].widget.attrs.update({
+            "class": "form-control",
+            "placeholder": "Введіть ваш нік..."
+        })
+        self.fields["password1"].widget.attrs.update({
+            "class": "form-control",
+            "placeholder": "Введіть ваш пароль..."
+        })
+        self.fields["password2"].widget.attrs.update({
+            "class": "form-control",
+            "placeholder": "Повторіть пароль..."
+        })
 
 
 class LoginForm(AuthenticationForm):
