@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
-{% block content %}
 
+{% block header %}
 <!-- Page Header-->
 <header class="masthead video-header">
     <video autoplay muted loop id="bg-video">
@@ -20,6 +20,9 @@
         </div>
     </div>
 </header>
+{% endblock %}
+
+{% block content %}
 <!-- Main Content-->
 <div class="container px-4 px-lg-5">
     <div class="row gx-4 gx-lg-5 justify-content-center">

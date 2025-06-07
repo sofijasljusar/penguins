@@ -1,20 +1,13 @@
 {% extends "base.html" %}
 {% load static %}
+
+<!-- Page Header-->
+{% block header %}
+{% include "partials/header.html" with background_image="penguins/images/login.jpg" heading="Увійти" subheading="З поверненням!"%}
+{% endblock %}
+
+<!-- Main Content-->
 {% block content %}
-    
-<header class="masthead image-header" style="background-image: url('{% static "penguins/images/login.jpg" %}')">
-    <div class="container position-relative px-4 px-lg-5">
-        <div class="row gx-4 gx-lg-5 justify-content-center">
-            <div class="col-md-10 col-lg-8 col-xl-7">
-                <div class="page-heading">
-                    <h1>Увійти</h1>
-                    <span class="subheading">Ласкаво просимо!</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
-    
 <main class="mb-4">
     <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">

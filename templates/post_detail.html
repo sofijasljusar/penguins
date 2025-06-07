@@ -1,9 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block content %}
-
 
 <!-- Page Header-->
+{% block header %}
 <header class="masthead image-header" style="background-image: url('{{ post.header_image.url }}');">
     <div class="container position-relative px-4 px-lg-5">`
         <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -21,7 +20,10 @@
         </div>
     </div>
 </header>
+{% endblock %}
+
 <!-- Post Content-->
+{% block content %}
 <article class="mb-4">
     <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
