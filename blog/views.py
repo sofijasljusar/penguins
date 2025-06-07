@@ -4,16 +4,16 @@ import smtplib
 from django.shortcuts import render
 from django.views.generic import TemplateView, DetailView, ListView
 from django.views.generic.edit import FormView
+from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth import login
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.contrib import messages
-from .forms import ContactForm
+from .forms import ContactForm, RegisterForm, LoginForm
 from dotenv import load_dotenv
-# Create your views here.
-import requests
 from .models import Post
 
 load_dotenv()
-BLOG_POSTS = requests.get('https://api.npoint.io/ce3b8ba44b768e2a827e').json()
 EMAIL = os.environ["EMAIL"]
 PASSWORD = os.environ["PASSWORD"]
 
@@ -64,13 +64,26 @@ class PostDetail(DetailView):
     model = Post
     template_name = "post_detail.html"
     context_object_name = "post"
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     slug = kwargs.get('slug')
-    #     post = next((p for p in BLOG_POSTS if p["slug"] == slug), None)
-    #     if post:
-    #         context["post"] = post
-    #     else:
-    #         context["post"] = {"title": "Not Found", "content": "This post does not exist."}
-    #
-    #     return context
+
+
+class UserRegisterView(FormView):
+    template_name = "register.html"
+    form_class = RegisterForm
+    success_url = reverse_lazy("home")
+
+    def form_valid(self, form):
+        user = form.save()
+        login(self.request, user)
+        return super().form_valid(form)
+
+
+class UserLoginView(LoginView):
+    template_name = "login.html"
+    form_class = LoginForm
+
+    def get_success_url(self):
+        return reverse_lazy("home")
+
+
+class UserLogoutView(LogoutView):
+    next_page = reverse_lazy("home")
