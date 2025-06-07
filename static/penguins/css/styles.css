@@ -61,12 +61,13 @@ blockquote {
   padding: 0.75rem;
   text-transform: uppercase;
 }
-#mainNav .navbar-nav > li.nav-item > a.nav-link {
+#mainNav .navbar-nav > li.nav-item > a.nav-link, button.nav-link {
   font-size: 0.75rem;
   font-weight: 800;
   letter-spacing: 0.0625em;
   text-transform: uppercase;
 }
+
 @media (min-width: 992px) {
   #mainNav {
     border-bottom: 1px solid transparent;
@@ -78,10 +79,12 @@ blockquote {
   #mainNav .navbar-brand:focus, #mainNav .navbar-brand:hover {
     color: rgba(255, 255, 255, 0.8);
   }
-  #mainNav .navbar-nav > li.nav-item > a.nav-link {
+  #mainNav .navbar-nav > li.nav-item > a.nav-link, button.nav-link {
     color: #fff;
   }
-  #mainNav .navbar-nav > li.nav-item > a.nav-link:focus, #mainNav .navbar-nav > li.nav-item > a.nav-link:hover {
+  #mainNav .navbar-nav > li.nav-item > a.nav-link:focus, #mainNav .navbar-nav > li.nav-item > a.nav-link:hover,
+  #mainNav .navbar-nav > li.nav-item > button.nav-link:focus, #mainNav .navbar-nav > li.nav-item > button.nav-link:hover
+  {
     color: rgba(255, 255, 255, 0.8);
   }
 }
@@ -107,15 +110,28 @@ blockquote {
   #mainNav.is-fixed .navbar-brand:focus, #mainNav.is-fixed .navbar-brand:hover {
     color: #0085A1;
   }
-  #mainNav.is-fixed .navbar-nav > li.nav-item > a {
+  #mainNav.is-fixed .navbar-nav > li.nav-item > a,
+  #mainNav.is-fixed .navbar-nav > li.nav-item > button{
     color: #212529;
   }
-  #mainNav.is-fixed .navbar-nav > li.nav-item > a:focus, #mainNav.is-fixed .navbar-nav > li.nav-item > a:hover {
+  #mainNav.is-fixed .navbar-nav > li.nav-item > a:focus, #mainNav.is-fixed .navbar-nav > li.nav-item > a:hover,
+  #mainNav.is-fixed .navbar-nav > li.nav-item > a:focus, #mainNav.is-fixed .navbar-nav > li.nav-item > button:hover{
     color: #0085A1;
   }
   #mainNav.is-visible {
     /* if the user changes the scrolling direction, we show the header */
     transform: translate3d(0, 100%, 0);
+  }
+}
+#logout-button:hover,
+#logout-button:focus {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+@media (max-width: 992px) {
+  #logout-button:hover,
+  #logout-button:focus {
+    color: rgba(0, 0, 0, 0.7); /* same as links in dropdown */
   }
 }
 
