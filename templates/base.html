@@ -32,6 +32,21 @@
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'home' %}">Головна</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'about' %}">Про мене</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'contact' %}">Контакти</a></li>
+                        {% if not user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'login' %}">Увійти</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'register' %}">Зареєструватись</a></li>
+                        {% else %}
+                        <li class="nav-item">
+                          <form method="post" action="{% url 'logout' %}" style="display: inline;">
+                            {% csrf_token %}
+                            <button id="logout-button" type="submit" class="nav-link px-lg-3 py-3 py-lg-4 p-0 m-0"
+                                    style=" border: none; background: none;">
+                              Вийти
+                            </button>
+                          </form>
+                        </li>
+                        {% endif %}
+
                     </ul>
                 </div>
             </div>
