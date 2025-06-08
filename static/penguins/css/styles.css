@@ -110,12 +110,10 @@ blockquote {
   #mainNav.is-fixed .navbar-brand:focus, #mainNav.is-fixed .navbar-brand:hover {
     color: #0085A1;
   }
-  #mainNav.is-fixed .navbar-nav > li.nav-item > a,
-  #mainNav.is-fixed .navbar-nav > li.nav-item > button{
+  #mainNav.is-fixed .navbar-nav > li.nav-item > a{
     color: #212529;
   }
-  #mainNav.is-fixed .navbar-nav > li.nav-item > a:focus, #mainNav.is-fixed .navbar-nav > li.nav-item > a:hover,
-  #mainNav.is-fixed .navbar-nav > li.nav-item > a:focus, #mainNav.is-fixed .navbar-nav > li.nav-item > button:hover{
+  #mainNav.is-fixed .navbar-nav > li.nav-item > a:focus, #mainNav.is-fixed .navbar-nav > li.nav-item > a:hover{
     color: #0085A1;
   }
   #mainNav.is-visible {
@@ -132,6 +130,17 @@ blockquote {
   #logout-button:hover,
   #logout-button:focus {
     color: rgba(0, 0, 0, 0.7); /* same as links in dropdown */
+  }
+}
+
+@media (min-width: 992px) {
+  #mainNav.is-fixed #logout-button {
+    color: #212529;
+  }
+
+  #mainNav.is-fixed #logout-button:focus,
+  #mainNav.is-fixed #logout-button:hover {
+    color: #0085A1;
   }
 }
 
