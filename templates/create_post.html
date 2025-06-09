@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block header %}
+{% include "partials/header.html" with background_image="penguins/images/glaciers.jpg" heading="Створити пост" subheading="Виплесніть всі свої роздуми про пінгвінів." %}
+{% endblock %}
+
+{% block content %}
+{#<main class="mb-4">#}
+{#  <div class="container">#}
+{#    <div class="row">#}
+{#      <div class="col-lg-8 col-md-10 mx-auto">#}
+{#          {{ ckeditor.load() }}#}
+{#          {{ ckeditor.config(name='body') }}#}
+{#          {{ render_form(form, novalidate=True, button_map={"submit": "primary"}) }}#}
+{#      </div>#}
+{#    </div>#}
+{#  </div>#}
+{#</main>#}
+{% endblock %}

@@ -87,3 +87,7 @@ class UserLoginView(LoginView):
 
 class UserLogoutView(LogoutView):
     next_page = reverse_lazy("home")
+
+
+class CreatePostView(TemplateView):
+    template_name = "create_post.html"

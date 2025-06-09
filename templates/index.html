@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block header %}
 <!-- Page Header-->
+{% block header %}
 <header class="masthead video-header">
     <video autoplay muted loop id="bg-video">
         <source src="{% static 'penguins/videos/penguins-walking.mp4' %}" type="video/mp4">
@@ -43,13 +43,13 @@
             <!-- Divider-->
             <hr class="my-4" />
             {% endfor %}
-{#            {% if current_user.id == 1 %}#}
+            {% if user.is_authenticated and user.is_superuser %}
             <div class="d-flex justify-content-end mb-4">
-            <a class="btn btn-primary text-uppercase" href="#"
+            <a class="btn btn-primary text-uppercase" href="{% url 'create_post' %}"
             >Створити новий пост</a
             >
             </div>
-{#            {% endif %}#}
+            {% endif %}
             <!-- Pager-->
             <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#">Попередні статті →</a></div>
         </div>
