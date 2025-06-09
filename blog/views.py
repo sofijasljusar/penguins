@@ -6,7 +6,8 @@ from django.views.generic import TemplateView, DetailView, ListView
 from django.views.generic.edit import FormView
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth import login
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.utils.http import url_has_allowed_host_and_scheme
 from django.urls import reverse_lazy
 from django.contrib import messages
 from .forms import ContactForm, RegisterForm, LoginForm
@@ -82,6 +83,9 @@ class UserLoginView(LoginView):
     form_class = LoginForm
 
     def get_success_url(self):
+        next_page = self.request.GET.get("next")
+        if next_page and url_has_allowed_host_and_scheme(next_page, allowed_hosts={self.request.get_host()}):
+            return next_page
         return reverse_lazy("home")
 
 
@@ -89,5 +93,8 @@ class UserLogoutView(LogoutView):
     next_page = reverse_lazy("home")
 
 
-class CreatePostView(TemplateView):
+class CreatePostView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
     template_name = "create_post.html"
+
+    def test_func(self):
+        return self.request.user.is_authenticated and self.request.user.is_superuser
