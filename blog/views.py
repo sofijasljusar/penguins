@@ -122,7 +122,7 @@ class EditPostView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return self.request.user.is_authenticated and self.request.user.is_superuser
 
     def get_success_url(self):
-        return reverse("post_detail", kwargs={"post_id": self.object.id})
+        return reverse("post_detail", kwargs={"slug": self.object.slug})
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
