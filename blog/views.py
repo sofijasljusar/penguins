@@ -1,9 +1,8 @@
 import os
 import smtplib
 
-from django.shortcuts import render
 from django.views.generic import TemplateView, DetailView, ListView
-from django.views.generic.edit import FormView
+from django.views.generic.edit import FormView, UpdateView
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth import login
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -13,6 +12,7 @@ from django.contrib import messages
 from .forms import ContactForm, RegisterForm, LoginForm, PostForm
 from dotenv import load_dotenv
 from .models import Post
+from django.urls import reverse
 
 load_dotenv()
 EMAIL = os.environ["EMAIL"]
@@ -106,3 +106,25 @@ class CreatePostView(LoginRequiredMixin, UserPassesTestMixin, FormView):
         post.author = self.request.user
         post.save()
         return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["heading"] = "Створити пост"
+        return context
+
+
+class EditPostView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Post
+    form_class = PostForm
+    template_name = "create_post.html"
+
+    def test_func(self):
+        return self.request.user.is_authenticated and self.request.user.is_superuser
+
+    def get_success_url(self):
+        return reverse("post_detail", kwargs={"post_id": self.object.id})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["heading"] = "Редагувати пост"
+        return context

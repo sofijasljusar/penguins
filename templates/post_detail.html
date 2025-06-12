@@ -12,7 +12,7 @@
                     <h2 class="subheading">Прочитайте статтю, щоб дізнатись деталі</h2>
                     <span class="meta">
                         Автор:
-                    <a href="{% url 'about' %}">Прізвище імʼя</a>,
+                    <a href="{% url 'about' %}">Пінгвінний експерт</a>,
                     {{ post.created_at }}
                     </span>
                 </div>
@@ -31,6 +31,15 @@
                 <div class="post-content">
                 <p>{{ post.content|safe }}</p>
                 </div>
+                {% if user.is_authenticated and user.is_superuser %}
+                <div class="d-flex justify-content-end mb-4">
+                  <a
+                    class="btn btn-primary float-right"
+                    href="{% url 'edit_post' post.id %}"
+                    >Edit Post</a
+                  >
+                </div>
+                {% endif %}
             </div>
         </div>
     </div>
