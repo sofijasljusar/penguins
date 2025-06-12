@@ -1,6 +1,9 @@
 {% extends "base.html" %}
+{% block header %}
+    <div style="width: 100vw; height: 76px; background-color: black"></div>
+{% endblock %}
 {% block content %}
-  <div class="container d-flex flex-column justify-content-center align-items-center text-center" style="min-height: 80vh;">
+  <div class="container d-flex flex-column justify-content-center align-items-center text-center" style="min-height: 70vh;">
     <h2>Підтвердити видалення</h2>
     <p>Ви впевнені, що хочете видалити пост "{{ object.title }}"?</p>
     <form method="post" class="d-flex gap-2 justify-content-center">{% csrf_token %}
