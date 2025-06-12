@@ -10,7 +10,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.utils.http import url_has_allowed_host_and_scheme
 from django.urls import reverse_lazy
 from django.contrib import messages
-from .forms import ContactForm, RegisterForm, LoginForm
+from .forms import ContactForm, RegisterForm, LoginForm, PostForm
 from dotenv import load_dotenv
 from .models import Post
 
@@ -93,8 +93,16 @@ class UserLogoutView(LogoutView):
     next_page = reverse_lazy("home")
 
 
-class CreatePostView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
+class CreatePostView(LoginRequiredMixin, UserPassesTestMixin, FormView):
     template_name = "create_post.html"
+    form_class = PostForm
+    success_url = reverse_lazy("home")
 
     def test_func(self):
         return self.request.user.is_authenticated and self.request.user.is_superuser
+
+    def form_valid(self, form):
+        post = form.save(commit=False)
+        post.author = self.request.user
+        post.save()
+        return super().form_valid(form)

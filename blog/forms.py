@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
+from .models import Post
 
 
 class ContactForm(forms.Form):
@@ -57,3 +59,13 @@ class LoginForm(AuthenticationForm):
             attrs={"class": "form-control",
                    "placeholder": "Введіть ваш пароль..."}))
 
+
+class PostForm(forms.ModelForm):
+    content = forms.CharField(widget=CKEditorUploadingWidget())
+
+    class Meta:
+        model = Post
+        fields = ["title", "slug", "header_image", "content", "status"]
+        widgets = {
+            "status": forms.Select()
+        }

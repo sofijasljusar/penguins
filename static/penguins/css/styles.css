@@ -431,3 +431,8 @@ header.image-header {
   background-attachment: scroll;
   z-index: -2;
 }
+
+.post-content img {
+    width: 100% !important;
+    height: auto !important;
+}
