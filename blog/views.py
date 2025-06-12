@@ -2,7 +2,7 @@ import os
 import smtplib
 
 from django.views.generic import TemplateView, DetailView, ListView
-from django.views.generic.edit import FormView, UpdateView
+from django.views.generic.edit import FormView, UpdateView, DeleteView
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth import login
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -128,3 +128,12 @@ class EditPostView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         context = super().get_context_data(**kwargs)
         context["heading"] = "Редагувати пост"
         return context
+
+
+class DeletePostView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Post
+    template_name = "confirm_delete_post.html"
+    success_url = reverse_lazy("home")
+
+    def test_func(self):
+        return self.request.user.is_authenticated and self.request.user.is_superuser
