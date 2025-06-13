@@ -131,6 +131,14 @@ class EditPostView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     def test_func(self):
         return self.request.user.is_authenticated and self.request.user.is_superuser
 
+    def form_valid(self, form):
+        old_image = self.get_object().header_image
+        response = super().form_valid(form)
+        new_image = self.object.header_image
+        if old_image and old_image != new_image:
+            cloudinary.uploader.destroy(old_image.public_id)
+        return response
+
     def get_success_url(self):
         return reverse("post_detail", kwargs={"slug": self.object.slug})
 

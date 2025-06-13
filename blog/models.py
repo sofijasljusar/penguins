@@ -20,6 +20,12 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def delete(self, *args, **kwargs):
+        public_id = getattr(self.header_image, "public_id", None)
+        if public_id:
+            cloudinary.uploader.destroy(public_id)
+        super().delete(*args, **kwargs)
+
     class Meta:
         ordering = ["created_at"]
 
