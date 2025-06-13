@@ -1,5 +1,6 @@
 import os
 import smtplib
+import cloudinary.uploader
 
 from django.views.generic import TemplateView, DetailView, ListView
 from django.views.generic.edit import FormView, UpdateView, DeleteView
@@ -104,7 +105,16 @@ class CreatePostView(LoginRequiredMixin, UserPassesTestMixin, FormView):
     def form_valid(self, form):
         post = form.save(commit=False)
         post.author = self.request.user
+        image_file = self.request.FILES["header_image"]
+        upload_result = cloudinary.uploader.upload(
+            image_file,
+            folder="header_images/",
+            use_filename=True,
+            unique_filename=True
+        )
+        post.header_image_url = upload_result["secure_url"]
         post.save()
+
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
