@@ -1,1 +1,1 @@
-web: gunicorn penguins.wsgi --bind 0.0.0.0:$PORT
+gunicorn penguins.wsgi --bind 0.0.0.0:$PORT
